@@ -1,0 +1,65 @@
+{
+  "name": "themarkers-assistant",
+  "version": "0.1.8",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "themarkers": "./packages/cli/dist/index.js"
+  },
+  "files": [
+    "packages/*/dist"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
+    "clean": "pnpm -r exec rm -rf node_modules dist && rm -rf node_modules"
+  },
+  "dependencies": {
+    "@themarkers/cli": "^0.1.0",
+    "@themarkers/core": "^0.1.0",
+    "@themarkers/ui": "^0.1.0",
+    "@prisma/client": "^5.10.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "commander": "^12.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "inquirer": "^9.2.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "prisma": "^5.10.2",
+    "tailwindcss": "^3.4.1",
+    "tsup": "^8.0.2",
+    "turbo": "^1.12.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "packageManager": "pnpm@8.15.4",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
