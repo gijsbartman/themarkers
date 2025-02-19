@@ -18,9 +18,9 @@
     "clean": "pnpm -r exec rm -rf node_modules dist && rm -rf node_modules"
   },
   "dependencies": {
-    "@themarkers/cli": "^0.1.0",
-    "@themarkers/core": "^0.1.0",
-    "@themarkers/ui": "^0.1.0",
+    "@themarkers/cli": "latest",
+    "@themarkers/core": "latest",
+    "@themarkers/ui": "latest",
     "@prisma/client": "^5.10.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
