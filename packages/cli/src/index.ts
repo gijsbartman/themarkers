@@ -16,12 +16,13 @@ program.name('themarkers').description('CLI to manage TheMarkers application').v
 program
   .command('start')
   .description('Start the dashboard and database')
-  .action(async () => {
+  .option('--port <port>', 'Port to bind to (default: 2401)', '2401')
+  .action(async (options) => {
     console.log('Starting TheMarkers dashboard and API...');
 
     // Start the API using the built version
     const corePath = path.resolve(pkgDir, '../core');
-    const api = spawn('node', ['dist/index.js'], {
+    const api = spawn('node', ['dist/index.js', '--port', options.port], {
       cwd: corePath,
       stdio: 'inherit',
       shell: true,
@@ -33,7 +34,9 @@ program
     });
 
     // No need to start UI separately as it's now served by the API
-    console.log('Server started! Open http://localhost:2401 in your browser');
+    console.log(
+      `Server starting! Once ready, open http://localhost:${options.port} in your browser`
+    );
 
     // Handle SIGINT (Ctrl+C) to properly clean up
     process.on('SIGINT', () => {
@@ -47,7 +50,7 @@ program
   .description('Check the health of the API')
   .action(async () => {
     try {
-      const response = await fetch('http://localhost:2401/health');
+      const response = await fetch('http://localhost:3001/health');
       const data = await response.json();
       console.log('API Health Status:', data);
     } catch (error) {

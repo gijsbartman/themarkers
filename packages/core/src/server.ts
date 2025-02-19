@@ -41,11 +41,28 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(uiPath, 'index.html'));
 });
 
-export function startServer(port: number = 2401) {
+export interface ServerConfig {
+  port: number;
+}
+
+export function startServer(config: ServerConfig = { port: 2401 }) {
   return new Promise((resolve) => {
-    const server = app.listen(port, () => {
-      console.log(`API server running at http://localhost:${port}/api`);
-      resolve(server);
-    });
+    const tryPort = (currentPort: number) => {
+      const server = app
+        .listen(currentPort, () => {
+          console.log(`API server running at http://localhost:${currentPort}/api`);
+          resolve(server);
+        })
+        .on('error', (err: NodeJS.ErrnoException) => {
+          if (err.code === 'EADDRINUSE') {
+            console.log(`Port ${currentPort} is in use, trying ${currentPort + 1}...`);
+            tryPort(currentPort + 1);
+          } else {
+            throw err;
+          }
+        });
+    };
+
+    tryPort(config.port);
   });
 }
