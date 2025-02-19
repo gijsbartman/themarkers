@@ -1,47 +1,61 @@
-# TheMarkers
+# The Markers
 
-A monorepo project for TheMarkers application.
+Met de TheMarkers package kan je je evaluaties, feedback, check-ins/outs, reflecties en documenten beheren en bijhouden in je code-editor.
 
-## Prerequisites
+## Beschrijving
 
-- Node.js >= 18
-- pnpm >= 8.15.4
+Met TheMarkers integreer je eenvoudig een dashboard in je project waar je:
 
-## Setup
+- Je check-ins en evaluaties kunt beheren
+- Feedback kunt ontvangen en geven
+- Documenten kunt opslaan en organiseren
+- Je voortgang kunt volgen op basis van de vereiste vaardigheden
+- Een overzicht hebt van je behaalde studiepunten
 
-1. Install dependencies:
+## Project Structuur
+
+Dit project bestaat uit verschillende onderdelen:
+
+- [`@themarkers/cli`](./packages/cli/README.md): Command-line tool voor het beheren van je dashboard
+- [`@themarkers/core`](./packages/core/README.md): De kern functionaliteit van het dashboard
+- [`@themarkers/ui`](./packages/ui/README.md): De web interface van het dashboard
+
+## Gebruik
+
+### Installatie
+
+Je kunt TheMarkers op twee manieren installeren:
+
+1. **Globaal** (`-g`): Installeer TheMarkers één keer op je systeem
+
    ```bash
-   pnpm install
+   npm install -g themarkers
+   # of
+   pnpm add -g themarkers
    ```
 
-2. Build all packages:
+   Voordeel: Je kunt het command `themarkers` overal gebruiken Nadeel: Alle projecten gebruiken dezelfde versie
+
+2. **Lokaal** (als devDependency): Installeer per project
    ```bash
-   pnpm build
+   npm install --save-dev themarkers
+   # of
+   pnpm add -D themarkers
    ```
+   Voordeel: Elk project kan zijn eigen versie hebben Nadeel: Je moet `npx` gebruiken om commands uit te voeren
 
-3. Start the development environment:
-   ```bash
-   pnpm dev
-   ```
+### Commands
 
-## Package Structure
-
-- `packages/core`: Business logic and database operations
-- `packages/ui`: React frontend application
-- `packages/cli`: Command-line tooling
-
-## Usage
-
-Once installed, you can use the CLI tool:
+#### Met globale installatie:
 
 ```bash
-themarkers start
+themarkers start              # Start het dashboard
 ```
 
-This will start up the dashboard and initialize the database.
+#### Met lokale installatie:
 
-## Development
-
-- `pnpm dev`: Start all packages in development mode
-- `pnpm build`: Build all packages
-- `pnpm lint`: Run linting across all packages 
+```bash
+npx themarkers start              # Start het dashboard
+# of
+pnpm themarkers start
+```
